@@ -1,0 +1,2 @@
+#!/bin/bash
+(echo -e "\ue271" " $@" ; sleep 2) | lemonbar -g 260x20+30+35 -f "Clean-8" -f "Siji-10" -B#242425

@@ -1,0 +1,17 @@
+#!/bin/bash
+magenta="#D24D57"
+BC="#87a8a8"
+
+mkb-kek() {
+mpc -p 6601 | sed '/%/s/.*(\([0-9]*\)%.*/\1/p;d' |  CHAR1='' CHAR2='' SEP='' START=" " END=" " mkb 
+}
+case $1 in
+bar)
+#while :; do
+#kek="$(mkb-kek)"
+#echo $kek
+#sleep 1
+#done
+mkb-kek
+;;
+esac

@@ -1,0 +1,9 @@
+#!/bin/bash
+h="30"
+w="1366"
+B="#242425"
+f1="Siji-10"
+f2="Clean-10"
+f3="fontawesome-6"
+
+(conky -c ~/conkyquh/.conkyrc-bar-new | lemonbar -p -g "$w"x"$h" -f "$f1" -f "$f2" -f "$f3" -B "$B")

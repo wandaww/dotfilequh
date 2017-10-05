@@ -1,0 +1,61 @@
+#!/bin/bash
+#arg
+#ndow="$(xdotool get_desktop | grep 0)"
+#inf="$(mpc -p 6601 -f "%artist%" | head -1 | wc -l)"
+#wifikek='iwgetid -r | wc -l'
+#bat='acpi -i | head -1 | cut -d, -f1 | cut -d: -f2 | sed 's/ //g' | grep "Charging" | wc -l'
+
+
+case $1 in
+
+ window)
+ ndow=`xdotool get_desktop | wc -l`
+ if [ $ndow -eq 1 ]; then
+ xdotool getwindowfocus getwindowname
+ fi
+ ;;
+
+ musik)
+ inf=`mpc -p 6601 -f "%artist%" | head -1 | wc -l`
+ if [ $inf -eq 1 ]; then
+ mpc -p 6601 -f "%artist% >> %title%" | head -1
+ else
+ echo not playing
+ fi
+ ;;
+ 
+ volume)
+ amixer get Master | grep "Front Left:" | awk '{print $5}' | cut -d [ -f2 | cut -d ] -f1
+ ;;
+
+ wifi)
+ wifiqu=`iwgetid | wc -l`
+ if [ $wifiqu -eq 0 ]; then
+ echo "off"
+ else
+ iwgetid -r
+ fi
+ ;;
+
+ infobat)
+ bat=`acpi -i | head -1 | cut -d, -f1 | cut -d: -f2 | sed 's/ //g' | grep "Charging" | wc -l`
+ if [ $bat -eq 1 ]; then
+ echo "Charging"
+ else
+ echo "Discharging"
+ fi
+ ;;
+
+ batre)
+ acpi | cut -d, -f2
+ ;;
+
+ jam)
+ date '+%H:%M'
+ ;;
+
+ tanggal)
+ date '+%d %b'
+ ;;
+
+esac

@@ -1,0 +1,27 @@
+#!/bin/bash
+
+kekmpd () {
+	kek="$(mpc -f "%title%" -p 6601 | head -1 | grep volume | wc -l)"
+	if [$kek -eq 0]; then
+	echo "Not Playing"
+	else
+	mpc -p 6601 -f "%artist% - %title%" | head -1
+	fi
+}
+
+lplay() {
+	echo -e "\ue04d"
+}
+
+exec 3<> /dev/tcp/localhost/6601
+
+last="$(mpc -p 6601 -f "%title%")"
+
+while read -u3 msg; do
+	if [[ "$msg" == OK* ]]; then
+	song="$(mpc -p 6601 current)"
+	[[ "$song" != "$last" ]] && popup  $(mpc -p 6601 -f "%title%" | head -1)
+	last="$song"
+	echo 'idle player' >&3
+	fi
+done 
