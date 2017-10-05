@@ -1,0 +1,9 @@
+background no
+out_to_console yes
+out_to_x no
+update_interval 1.0
+total_run_times 0
+use_spacer none
+
+TEXT
+%{l}%{F\#8B8386} %{F\#8B8386}${exec statusquh window}%{F\#8B8386}  ${exec statusquh wifi}%{F\#8B8386}  ${exec statusquh infobat}%{c}%{F\#989584}${exec statusquh musik}%{r}%{F\#B0171F}%{F\#8B8386}${exec statusquh batre}%{F\#B0171F}  %{F\#8B8386}${exec statusquh volume}%{F\#B0171F}  %{F\#8B8386}${exec statusquh jam}%{F\#B0171F}  %{F\#8B8386}${exec statusquh tanggal}%{F-}%{B-}
