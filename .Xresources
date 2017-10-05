@@ -1,0 +1,60 @@
+URxvt.font: 			xft:Hack:pixelsize=11:antialias=false
+URxvt.iconName:			rxvt-unicode
+rxvt.scrollBar: false
+rxvt.shading: 30
+urxvt.shading: 25
+urxvt.scrollBar: false
+URxvt.internalBorder:30
+URxvt.geometry: 60x20
+URxvt.keysym.M-c:   perl:clipboard:copy
+URxvt.keysym.M-v:   perl:clipboard:paste
+URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+
+
+! special
+*.foreground:   #c5c8c6
+*.background:   #0c0a0a
+*.cursorColor:  #c5c8c6
+
+! black
+*.color0:       #282a2e
+*.color8:       #373b41
+
+! red
+*.color1:       #a54242
+*.color9:       #cc6666
+
+! green
+*.color2:       #8c9440
+*.color10:      #b5bd68
+
+! yellow
+*.color3:       #de935f
+*.color11:      #f0c674
+
+! blue
+*.color4:       #5f819d
+*.color12:      #81a2be
+
+! magenta
+*.color5:       #85678f
+*.color13:      #b294bb
+
+! cyan
+*.color6:       #5e8d87
+*.color14:      #8abeb7
+
+! white
+*.color7:       #707880
+*.color15:      #c5c8c6
+
+twobwm.border_width: 5
+twobwm.outer_border: 3
+twobwm.focus_color: #ffffff
+twobwm.unfocus_color: #cc6666
+twobwm.fixed_color: #10643e
+twobwm.unkill_color: #818f8f
+twobwm.outer_border_color: #0c0a0a
+twobwm.fixed_unkill_color: #818f8f
+twobwm.inverted_colors: false
+twobwm.enable_compton: true
