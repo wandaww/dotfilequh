@@ -1,0 +1,28 @@
+#!/bin/bash
+
+#color
+FG='#dcdcdc'
+BG='#333333'
+FG_tit='#cdd243'
+BG_subtit='#222222'
+FG_cl='#9d1e1e'
+#font
+icon1="Ionicons:size=13"
+icon2="FontAwesome:size=13"
+font2="Inconsolata:bold:size=11"
+font1="Inconsolata:size=11"
+fontmkb="fontawesome:size=11"
+
+#argument
+title=$(mpc -p 6601 -f %title% | head -1)
+artist=$(mpc -p 6601 -f %artist% | head -1)
+album=$(mpc -p 6601 -f %album% | head -1)
+
+#exec da above command
+ (
+echo "^fg($FG_cl)^fn(FontAwesome:size=8)^p(+238) ^p()^fg
+ ^fg($FG_tit)^fn($font2)^p(+75)Now Playing^p()^fg()
+   ^fg(#666666)-------------------------
+   ^fn($icon1)^fn($font1) $title  
+   ^fn($icon2)^fn($font1) $album 
+   ^fn($icon2)^fn($font1) $artist") |  dzen2 -p -x 213 -y 40 -w 250 -bg $BG -fg $FG -l 7 -u -ta l -e 'onstart=uncollapse;button1=exit;button3=exit' -fn $font1
