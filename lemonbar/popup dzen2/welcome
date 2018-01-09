@@ -1,0 +1,27 @@
+#!/bin/bash
+
+#color
+FG='#8c8c8c'
+BG='#0f0d0d'
+FG_ICON='#c88484'
+
+#font
+icon="FontAwesome:size=11"
+icon2="Siji:size=10"
+font="Inconsolata:bold:size=13"
+
+#who is
+daku=$(hostname)
+user=$(whoami)
+wm_name=$(echo $DESKTOP_SESSION)
+distro=$(cat /etc/issue.net | awk '{print $1}')
+
+#main
+(
+echo "^fg($FG)^fn($font)^p(+150)Welcome $user, to the $wm_name^p()^fn($icon)         ^fg    
+   ^fg(#666666)-----------------------------------------------------
+    ^fn($icon2)^fn($font) Your Distro is $distro
+    ^fn($icon)^fn($font) Loading Desktop / WM Configuration...
+    ^fn($icon)^fn($font) Loading Startup Configuration...
+   ^fg(#666666)-----------------------------------------------------
+    ^fn($font)proccess done, after this popup close automaticly !") | dzen2 -p 4 -x 430 -y 300 -w 530 -bg $BG -fg $FG -l 7 -u -ta l -e 'onstart=uncollapse;button1=exit;button3=exit' -fn $font
