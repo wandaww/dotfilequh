@@ -15,7 +15,7 @@ minibar with dzen2
 this lemonbar + conky
 ![kek](https://github.com/Dante08/dotfilequh/blob/master/2017-10-06-041152_1366x768_scrot.png)
 
-you must install 2bwm, mkb, skroll, conky, lemonbar, dzen2.
+you must install 2bwm, mkb, skroll, conky, lemonbar, dzen2 (xft support & gadget of them).
 
 and you must installed font Siji, FontAwesome, Clean
 
