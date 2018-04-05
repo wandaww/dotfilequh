@@ -1,0 +1,15 @@
+#!/bin/bash
+font="mplus Nerd Font:size=10"
+bar="FontAwesome:size=8"
+song() {
+	mpc -p 6601 -f "%title%" | head -1  
+}
+artis() {
+	mpc -p 6601 -f "%artist%" | head -1
+}
+while true 
+do
+	echo "^p(+10)^fn($font)$(song)^fn()^p()
+^p(+10)^fn($font)$(artis)^fn()^p()
+^p(+10)^fn($bar)$(mkbquh1 bar)^fn()^p()"
+done | dzen2 -p -y 25 -x 883 -l 2 -u -w 190 -ta l -fn 'mplus Nerd Font:size=10' -e 'onstart=uncollapse;key_Escape=ungrabkeys,exit'

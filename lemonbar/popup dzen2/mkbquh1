@@ -1,0 +1,80 @@
+#!/bin/bash
+magenta="#D24D57"
+BC="#87a8a8"
+bar1='#B0171F'
+bar2='#ffffff'
+icon2="FontAwesome:size=13"
+
+#for dzen2
+mkb-test() {
+zen=$(amixer get Master | grep "Front Left:" | awk '{print $5}' | cut -d [ -f2 | cut -d ] -f1)
+CHAR1='='
+CHAR2='-'
+SEP='>'
+START=' '
+END=' '
+SIZE='20'
+export CHAR1 CHAR2 SEP START END SIZE
+mkb $zen
+}
+
+mkb-kek() {
+kek=$(mpc -p 6601 | sed '/%/s/.*(\([0-9]*\)%.*/\1/p;d') 
+CHAR1='^fg(#B0171F)' 
+CHAR2='^fg(#ffffff)' 
+SEP='' 
+START=" " 
+END=" "
+SIZE=20
+export CHAR1 CHAR2 SEP START END SIZE
+mkb $kek
+}
+
+mkb-vol() {
+vol=$(amixer get Master | grep "Front Left:" | awk '{print $5}' | cut -d [ -f2 | cut -d ] -f1)
+CHAR1='%{F#B0171F}'
+CHAR2='%{F#ffffff}'
+SEP='' 
+START=" "
+END=" "
+SIZE=13
+export CHAR1 CHAR2 SEP START END SIZE
+mkb $vol
+}
+
+
+mkb-bat() {
+bat=$(acpi | cut -d, -f2)
+CHAR1='%{F#B0171F}'
+CHAR2='%{F#ffffff}'
+SEP=''
+START=" "
+END=" "
+SIZE=10
+export CHAR1 CHAR2 SEP START END SIZE
+mkb $bat
+}
+
+case $1 in
+bar)
+#while :; do
+#kek="$(mkb-kek)"
+#echo $kek
+#sleep 1
+#done
+mkb-kek
+;;
+
+dzen2)
+mkb-test
+;;
+
+volum)
+mkb-vol
+;;
+
+batrebar)
+mkb-bat
+;;
+
+esac
