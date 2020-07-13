@@ -1,8 +1,5 @@
 # dotfilequh
-This is my repo of my dot file for linux desktop customization.
-
-with some rice at inside
-
+This is my dotfile repo for customization linux desktop. 
 this with lemonbar
 ![lemonbar](https://github.com/Dante08/dotfilequh/blob/master/2017-08-07-233345_1366x768_scrot.png)
 
