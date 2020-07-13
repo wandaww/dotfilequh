@@ -1,5 +1,5 @@
 # dotfilequh
-this my percobaan repo :v
+This is my repo of my dot file for linux desktop customization.
 
 with some rice at inside
 
