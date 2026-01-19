@@ -16,7 +16,7 @@ My personal Linux ricing setup ✨
 - **Bar**       : lemonbar / dzen2  
 - **Status**    : conky  
 - **Shell**     : fish  
-- **Launcher** : custom scripts  
+- **Launcher** : rofi  
 
 ---
 
