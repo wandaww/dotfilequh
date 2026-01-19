@@ -1,10 +1,51 @@
 # dotfilequh
-This is my dotfile repo for customization linux desktop. 
-im using 2bwm as wm.
-you must install mkb (  git clone git://git.2f30.org/mkb  ), skroll (  git clone git://z3bra.org/skroll.git  ) , conky, lemonbar (  https://aur.archlinux.org/lemonbar-xft-git.git  ) , dzen2 (  https://aur.archlinux.org/dzen2-git.git ).
 
-and you must installed font Siji, FontAwesome, Clean
+My personal Linux ricing setup ✨  
 
-for popup it can capture any media player you use, please install playerctl
+---
 
+## 🖼 Preview
 
+<img src="ricingxx5.1_000.png" width="650">
+<img src="ricingxx5.1_004.png" width="650">
+---
+
+## 🧩 Setup Info
+
+- **WM**        : 2bwm  
+- **Bar**       : lemonbar / dzen2  
+- **Status**    : conky  
+- **Shell**     : fish  
+- **Launcher** : custom scripts  
+
+---
+
+## 📦 Requirements
+
+Before using this setup, make sure you have installed the following dependencies.
+
+### 🔧 Core Tools
+- **mkb**  
+  ```bash
+  git clone git://git.2f30.org/mkb
+- **skroll**
+- **conky**
+  ```bash
+  git clone git://z3bra.org/skroll.git
+- **lemobar**
+  ```bash
+  https://aur.archlinux.org/packages/lemonbar-xft-git
+- **dzen2**
+  ```bash
+  https://aur.archlinux.org/packages/dzen2-git
+- **fonts**
+  ```bash
+  Siji git clone https://github.com/stark/siji && cd siji
+  Font Awesome https://archlinux.org/packages/extra/any/woff2-font-awesome/
+  Hack https://github.com/source-foundry/Hack
+- **media popup**
+  ```bash
+  playerctl
+
+## created with ❤️
+  
