@@ -33,7 +33,7 @@ Before using this setup, make sure you have installed the following dependencies
   git clone git://z3bra.org/skroll.git
 - **conky**
   ```bash
-  git clone git://z3bra.org/skroll.git
+  https://github.com/brndnmtthws/conky
 - **lemobar**
   ```bash
   https://aur.archlinux.org/packages/lemonbar-xft-git
