@@ -29,6 +29,8 @@ Before using this setup, make sure you have installed the following dependencies
   ```bash
   git clone git://git.2f30.org/mkb
 - **skroll**
+  ```bash
+  git clone git://z3bra.org/skroll.git
 - **conky**
   ```bash
   git clone git://z3bra.org/skroll.git
