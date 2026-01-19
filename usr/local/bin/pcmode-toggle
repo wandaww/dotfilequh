@@ -1,0 +1,9 @@
+#!/bin/sh
+
+GOV=$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor)
+
+if [ "$GOV" = "performance" ]; then
+    statusquh psave
+else
+    statusquh perf
+fi

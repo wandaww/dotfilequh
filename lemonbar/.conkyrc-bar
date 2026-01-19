@@ -1,0 +1,22 @@
+conky.config = {
+    -- General
+    background = false,
+    update_interval = 1.0,
+    total_run_times = 0,
+
+    -- Output
+    out_to_console = true,
+    out_to_x = false,
+
+    -- Behaviour
+    double_buffer = true,
+    use_spacer = 'none',
+
+    -- Encoding
+    override_utf8_locale = true,
+};
+
+conky.text = [[
+%{B\#83A598FF}%{l}%{F\#FFFFFF00} %{A:launcher:} ⏎  %{B-}%{A}%{B\#e59765}%{F\#523d6d}  ${exec statusquh ws}  %{B-}%{B\#99B898}%{F\#355C7D}%{A:launch steam:}  ${execi 0.2 statusquh steam_icon}   %{A}%{A:launch spotify:}${execi 0.2 statusquh spotify_icon}   %{A}%{A:launch obs:}${execi 0.2 statusquh obs_icon}   %{A}%{A:launch zen:}${execi 0.2 statusquh zen_icon} %{A}%{B-}%{B\#e7d8c9}  %{A:pcmode-toggle:}${execi 1 pcmode-status}%{A}  %{B-}%{r}%{F\#8B8386}${exec statusquh window}%{F\#8B8386}   ⏎  %{B\#ffe6f7}  %{B-}%{B\#bbbbbb}  %{F\#8B8386}CPU: ${execi 0.2 statusquh cpu-usage} GPU: ${execi 0.2 statusquh gpu-usage} RAM: ${execi 0.2 statusquh ram-usage}  %{B-}%{B\#d8e6fd}  %{B\#e0bcc0}  %{F\#8B8386}CPU: ${execi 0.2 statusquh cpu-temp} GPU: ${execi 0.2 statusquh gpu-temp}  %{B-}%{B\#40e0d0} %{F\#8B8386}%{A:pavucontrol:} ⏎ %{F\#8B8386}${exec statusquh volume} %{A}%{F\#8B8386} ⏎ %{F\#8B8386}${exec statusquh jam} %{F\#8B8386}  ⏎ %{F\#8B8386}${exec statusquh tanggal}   %{F-}%{B-}
+]]
+

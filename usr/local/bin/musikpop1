@@ -1,0 +1,65 @@
+#!/bin/bash
+# Spotify popup Lemonbar: scroll judul + logo statis
+# Dependencies: playerctl, skroll, lemonbar
+
+# -----------------------------
+# CONFIG
+# -----------------------------
+BG_COLOR="#222222"
+FG_COLOR="#ffffff"
+
+ICON_BG="#FF0000"
+ICON_FG="#ffffff"
+
+WIDTH=150
+HEIGHT=30
+X_POS=100
+Y_POS=50
+DURATION=10
+SLEEP_INTERVAL=2
+SCROLL_CROP=30
+
+FA_FONT="fontawesome-reguler:size=14"
+TEXT_FONT="Heck Nerd Font:size=10"
+
+# -----------------------------
+# VARIABEL
+# -----------------------------
+LAST_SONG=""
+PID_SCROLL=""
+PID_ICON=""
+
+# -----------------------------
+# LOOP UTAMA
+# -----------------------------
+while true; do
+    SONG=$(playerctl metadata --format '{{artist}} - {{title}}' 2>/dev/null)
+
+    if [[ "$SONG" != "$LAST_SONG" && -n "$SONG" ]]; then
+        LAST_SONG="$SONG"
+
+        # Kill popup lama
+        [[ -n "$PID_SCROLL" ]] && kill $PID_SCROLL 2>/dev/null
+        [[ -n "$PID_ICON" ]] && kill $PID_ICON 2>/dev/null
+
+        # Logo
+        ICON=$'\uf001'
+
+        # Jalankan Lemonbar logo statis (terpisah)
+        echo "%{B$ICON_BG}%{F$ICON_FG}%{T1} $ICON %{B-}%{F-}" | \
+        lemonbar -p -d -B "$BG_COLOR" -F "$ICON_FG" -g 30x${HEIGHT}+${X_POS}+${Y_POS} -f "$FA_FONT" &
+        PID_ICON=$!
+
+        # Jalankan Lemonbar scroll judul lagu (langsung pipe skroll)
+        skroll -l -n $SCROLL_CROP <<< "$SONG" | \
+        lemonbar -p -d -B "$BG_COLOR" -F "$FG_COLOR" -g ${WIDTH}x${HEIGHT}+$(($X_POS + 30))+$Y_POS \
+            -f "$TEXT_FONT" &
+        PID_SCROLL=$!
+
+        # Auto hide
+        (sleep $DURATION && kill $PID_SCROLL 2>/dev/null && kill $PID_ICON 2>/dev/null) &
+    fi
+
+    sleep $SLEEP_INTERVAL
+done
+

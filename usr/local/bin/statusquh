@@ -1,0 +1,150 @@
+#!/bin/bash
+#dimulai dengan bismillah
+###################################################################################
+#  ___   _____  _____  _____  _   _  ___    _____  _   _  _   _     ___    _   _  #
+# (  _`\(_   _)(  _  )(_   _)( ) ( )(  _`\ (  _  )( ) ( )( ) ( )   (  _`\ ( ) ( ) #
+# | (_(_) | |  | (_) |  | |  | | | || (_(_)| ( ) || | | || |_| |   | (_(_)| |_| | #
+# `\__ \  | |  |  _  |  | |  | | | |`\__ \ | | | || | | ||  _  |   `\__ \ |  _  | #
+# ( )_) | | |  | | | |  | |  | (_) |( )_) || (('\|| (_) || | | | _ ( )_) || | | | #
+# `\____) (_)  (_) (_)  (_)  (_____)`\____)(___\_)(_____)(_) (_)(_)`\____)(_) (_) #
+#                                                                                 #
+###################################################################################
+
+###INFORMASI###
+##Font : fontawesome-regular:size=14
+##AMDCPUnGPU
+##latest lemonbar and conky compatible
+##wm : 2bwm
+###edit sudoer file kamu agar bisa switch governor NOPASSWD, $sudo EDITOR=vim visudo
+###############
+
+#variable
+get_active_class() {
+    wid=$(xprop -root _NET_ACTIVE_WINDOW 2>/dev/null | awk '{print $NF}')
+    [ -z "$wid" ] && exit 0
+    xprop -id "$wid" WM_CLASS 2>/dev/null | tr '[:upper:]' '[:lower:]'
+}
+
+#capture window name, cocok dengan aplikasi moderen
+case $1 in
+window)
+    wid=$(xprop -root _NET_ACTIVE_WINDOW 2>/dev/null | awk '{print $NF}')
+    [ -z "$wid" ] && exit 0
+
+    xprop -id "$wid" -notype _NET_WM_NAME 2>/dev/null \
+        | cut -d '"' -f2
+;;
+
+#menampilkan informasi esensial
+jam)
+    date '+%H:%M'
+;;
+
+tanggal)
+    date '+%d %b'
+;;
+
+volume)
+    amixer get Master | grep "Front Left:" | awk '{print $5}' | cut -d [ -f2 | cut -d ] -f1
+;;
+
+cpu-usage)
+    read cpu user nice system idle iowait irq softirq steal guest guest_nice < /proc/stat
+
+    prev_idle=$((idle + iowait))
+    prev_total=$((user + nice + system + idle + iowait + irq + softirq + steal))
+
+    sleep 0.2
+
+    read cpu user nice system idle iowait irq softirq steal guest guest_nice < /proc/stat
+
+    idle_all=$((idle + iowait))
+    total=$((user + nice + system + idle + iowait + irq + softirq + steal))
+
+    usage=$((100 * ((total - prev_total) - (idle_all - prev_idle)) / (total - prev_total)))
+    printf "%d%%" "$usage"
+    ;;
+
+ram-usage)
+    free -m | awk '/Mem:/ { printf "%d/%dMB", $3, $2 }'
+;;
+
+
+gpu-usage)
+    u=$(cat /sys/class/drm/card1/device/gpu_busy_percent)
+    if [ "$u" -lt 5 ]; then
+        echo "IDLE"
+    else
+        echo "${u}%"
+    fi 
+;;
+
+cpu-temp)
+    sensors | awk '/Tctl/ {print $2}'
+;;
+
+gpu-temp)
+    sensors | awk '/edge/ {print $2}'
+;;
+
+#menampilkan workspace
+ws)
+    cur=`xprop -root _NET_CURRENT_DESKTOP | awk '{print $3}'`
+    tot=`xprop -root _NET_NUMBER_OF_DESKTOPS | awk '{print $3}'`
+
+    for w in `seq 0 $((cur - 1))`; do line="${line}⏎"; done
+    line="${line}⏎"
+    for w in `seq $((cur + 7)) $tot`; do line="${line}⏎"; done
+    echo $line
+;;
+ 
+#icon  jika apliaksi terbuka dan underline aktif ketika window nya aktif serta mengikuti mouse mu alias sloppy
+steam_icon)
+   if get_active_class | grep -q steam; then
+       printf "%%{+u}%%{U#e262626}⏎%%{-u}"
+   else
+       printf "⏎"
+   fi
+;;
+
+spotify_icon)
+    if get_active_class | grep -q spotify; then
+        printf "%%{+u}%%{U#e262626}⏎%%{-u}"
+    else
+        printf "⏎"
+    fi
+;;
+
+obs_icon)
+    if get_active_class | grep -q obs; then
+        printf "%%{+u}%%{U#e262626}⏎%%{-u}"
+    else
+        printf "⏎"
+    fi
+;;
+
+zen_icon)
+    if get_active_class | grep -q zen; then
+        printf "%%{+u}%%{U#e262626}⏎%%{-u}"
+    else
+        printf "⏎"
+    fi
+;;
+
+pavu_icon)
+    if get_active_class | grep -q pavucontrol; then
+        printf "%%{+u}%%{U#e262626}⏎%%{-u}"
+    else
+        printf "⏎"
+    fi
+;;
+
+perf)
+    sudo /usr/bin/cpupower frequency-set -g performance
+;;
+
+psave)
+    sudo /usr/bin/cpupower frequency-set -g powersave
+;;
+
+esac

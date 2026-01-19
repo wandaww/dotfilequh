@@ -1,0 +1,18 @@
+#!/bin/bash
+
+h="30"
+w="1920"
+q="0"
+r="0"
+B="#252837"
+
+f1="HackNerdFont-reguler:size=10"
+f3="fontawesome-reguler:size=14"
+
+conky -c ~/lemonbar/.conkyrc-bar | \
+lemonbar -d -p -g "${w}x${h}+${q}+${r}" \
+-f "$f1" \
+-f "$f3" \
+-B "$B" \
+| sh 
+

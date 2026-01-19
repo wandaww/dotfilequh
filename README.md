@@ -1,21 +1,10 @@
 # dotfilequh
 This is my dotfile repo for customization linux desktop. 
-this with lemonbar
-![lemonbar](https://github.com/Dante08/dotfilequh/blob/master/2017-08-07-233345_1366x768_scrot.png)
-
-this with dzen2
-![dzen2](https://github.com/Dante08/dotfilequh/blob/master/2017-07-16-215224_1366x768_scrot.png)
-
-minibar with dzen2
-![minibar](https://github.com/Dante08/dotfilequh/blob/master/2017-07-30-105317_1366x768_scrot.png)
-
-this lemonbar + conky
-![kek](https://github.com/Dante08/dotfilequh/blob/master/2017-10-06-041152_1366x768_scrot.png)
-
-you must install 2bwm, mkb, skroll, conky, lemonbar, dzen2 (xft support & gadget of them).
+im using 2bwm as wm.
+you must install mkb (  git clone git://git.2f30.org/mkb  ), skroll (  git clone git://z3bra.org/skroll.git  ) , conky, lemonbar (  https://aur.archlinux.org/lemonbar-xft-git.git  ) , dzen2 (  https://aur.archlinux.org/dzen2-git.git ).
 
 and you must installed font Siji, FontAwesome, Clean
 
-for music use ncmpcpp, mpd, and mpc
+for popup it can capture any media player you use, please install playerctl
 
-just enjoy you want, boyz!
+

@@ -1,0 +1,26 @@
+#startup 2bwm
+#untuk perintah yang pakai sudo agar bisa dijalankan di startup tanpa password 
+#silakan untuk edit sudoers filenya dulu $sudo EDITOR=vim visudo
+#setting dual monitor which is primary display you can run xrandr --listmonitor first to know what ur list
+xrandr --output DisplayPort-0 --primary --auto \
+       --output HDMI-A-1 --auto --right-of DisplayPort-0
+
+#apply wallpaper using feh in startup
+feh --bg-fill $HOME/Pictures/wallpaper/1.png
+
+#amd gpu fan control
+sudo systemctl enable --now lactd
+
+#load siji font
+xset +fp /home/dotfiles/.local/share/fonts/
+xset +fp /home/dotfiles/.fonts/
+xset fp rehash
+#mematikan aselerasi mouse
+xinput set-prop 15 "libinput Accel Profile Enabled" 0, 1
+xinput set-prop 15 "libinput Accel Speed" 0
+
+# compositor
+#picom --backend glx --vsync & 
+
+#execute 2bwm
+(sleep 2; exec 2bwm)
