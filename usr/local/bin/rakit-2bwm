@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Pastikan dijalankan di dalam folder AUR 2bwm
+if [ ! -f PKGBUILD ]; then
+    echo "Error: File PKGBUILD tidak ditemukan! Jalankan skrip ini di folder 2bwm."
+    exit 1
+fi
+
+echo "--- 1. Membersihkan build lama ---"
+cd src/2bwm && make clean && rm -f 2bwm && cd ../..
+
+echo "--- 2. Mengompilasi ulang (config.h baru) ---"
+makepkg -f --noextract
+
+echo "--- 3. Menginstal ke sistem ---"
+# Mencari nama file paket terbaru hasil build
+PAKET=$(ls 2bwm-*.pkg.tar.zst | head -n 1)
+sudo pacman -U --overwrite "*" "$PAKET"
+
+echo "--- SELESAI! ---"
+echo "Jangan lupa restart 2bwm kamu."
